@@ -1,0 +1,143 @@
+/* —— basic reset —— */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* —— body + fonts —— */
+body {
+  font-family: "Montserrat", Arial, Helvetica, sans-serif;
+  color: #333;
+  display: flex;
+  justify-content: center;
+}
+
+.page-wrapper {
+  width: 90%;
+  max-width: 900px;
+}
+
+/* header */
+.site-header {
+  text-align: center;
+  padding-top: 50px;
+}
+
+.site-title {
+  font-size: 22px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+/* chat window */
+.chatbox {
+  margin: 40px 0;
+}
+
+.chat-window {
+  height: 360px;
+  border: 1px solid #000;
+  padding: 20px;
+  font-size: 18px;
+  line-height: 1.5;
+  overflow-y: auto;
+  background: #fafafa;
+  white-space: pre-line;
+}
+
+/* messages */
+.msg {
+  margin-bottom: 14px;
+  line-height: 1.5;
+}
+
+.msg.user {
+  color: #000;
+}
+
+.msg.ai {
+  color: #666666;
+}
+
+/* input row */
+.chat-form {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.chat-form input {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid #ccc;
+  font-size: 18px;
+}
+
+.chat-form input:focus {
+  outline: 2px solid #000;
+  outline-offset: 2px;
+}
+
+.chat-form button {
+  font-size: 18px;
+  background: #000;
+  color: #fff;
+  border: none;
+  padding: 12px;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.chat-form button .material-icons {
+  font-size: 24px;
+}
+
+.chat-form button:hover {
+  background: #666666;
+}
+
+.chat-form button:focus {
+  outline: 2px solid #000;
+  outline-offset: 2px;
+}
+
+/* visually hidden */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* footer */
+.site-footer {
+  margin: 60px 0 40px;
+  text-align: center;
+  font-size: 14px;
+  color: #666;
+}
+
+.site-footer nav {
+  margin-top: 12px;
+}
+
+.site-footer a {
+  margin: 0 8px;
+  color: #000;
+  text-decoration: none;
+}
+
+.site-footer a:hover {
+  color: #666666;
+}
