@@ -1,4 +1,4 @@
-/* —— basic reset —— */
+/* --- basic reset --- */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -6,91 +6,414 @@
 }
 
 :root {
-  --loreal-black: #0a0a0a;
-  --loreal-deep-charcoal: #161616;
-  --loreal-ivory: #f6f3ee;
-  --loreal-gold: #b9975b;
-  --loreal-gold-soft: #d6bb84;
-  --loreal-silver: #a8a8a8;
-  --loreal-white: #ffffff;
+  --brand-red: #ff003b;
+  --brand-gold: #e3a535;
+  --ink-900: #151515;
+  --ink-700: #343434;
+  --ink-500: #595959;
+  --shell: #fff8ef;
+  --surface: rgba(255, 255, 255, 0.88);
+  --surface-strong: #ffffff;
+  --stroke: rgba(227, 165, 53, 0.35);
 }
 
-/* —— body + fonts —— */
 body {
   font-family: "Questrial", "Century Gothic", "Avenir Next", sans-serif;
-  color: var(--loreal-deep-charcoal);
+  color: var(--ink-900);
   min-height: 100vh;
   display: flex;
   justify-content: center;
   background:
-    radial-gradient(circle at 85% 15%, rgba(185, 151, 91, 0.17) 0, transparent 34%),
-    radial-gradient(circle at 10% 80%, rgba(185, 151, 91, 0.11) 0, transparent 30%),
-    linear-gradient(180deg, #fbf9f5 0%, #f2eee7 100%);
+    radial-gradient(circle at 18% 10%, rgba(255, 0, 59, 0.13) 0, transparent 33%),
+    radial-gradient(circle at 84% 14%, rgba(227, 165, 53, 0.18) 0, transparent 35%),
+    radial-gradient(circle at 83% 86%, rgba(255, 0, 59, 0.09) 0, transparent 30%),
+    linear-gradient(160deg, #fffefc 0%, #fff7eb 48%, #ffeede 100%);
 }
 
 .page-wrapper {
-  width: 90%;
-  max-width: 960px;
+  width: min(1180px, 92vw);
   margin: 0 auto;
+  position: relative;
 }
 
-/* header */
+.page-wrapper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: linear-gradient(
+    120deg,
+    transparent 0%,
+    transparent 46%,
+    rgba(227, 165, 53, 0.08) 46%,
+    rgba(227, 165, 53, 0.08) 48%,
+    transparent 48%
+  );
+  z-index: 0;
+}
+
+main {
+  display: grid;
+  gap: 18px;
+  position: relative;
+  z-index: 1;
+}
+
 .site-header {
   text-align: center;
-  padding: 44px 0 20px;
-  animation: fade-up 600ms ease-out both;
+  padding: 48px 0 24px;
+  animation: fade-up 620ms ease-out both;
+  position: relative;
+  z-index: 1;
 }
 
 .brand-logo {
-  width: min(360px, 72vw);
+  width: min(370px, 74vw);
   height: auto;
   display: block;
-  margin: 0 auto 14px;
+  margin: 0 auto 12px;
+  filter: drop-shadow(0 8px 16px rgba(21, 21, 21, 0.08));
 }
 
 .brand-tagline {
   font-size: 12px;
   letter-spacing: 0.24em;
   text-transform: uppercase;
-  color: #4c4c4c;
+  color: var(--ink-500);
   margin-bottom: 10px;
 }
 
 .site-title {
   font-family: "Bodoni Moda", "Didot", "Times New Roman", serif;
-  font-size: clamp(1.8rem, 2.5vw, 2.5rem);
+  font-size: clamp(2rem, 2.8vw, 2.8rem);
   font-weight: 700;
-  letter-spacing: 0.03em;
-  color: var(--loreal-black);
-  margin-bottom: 4px;
+  color: var(--ink-900);
+  line-height: 1.1;
 }
 
-/* chat window */
+.catalog-shell,
+.selected-products,
 .chatbox {
   margin: 24px 0;
-  background: rgba(255, 255, 255, 0.92);
-  border: 1px solid rgba(185, 151, 91, 0.35);
+  background: var(--surface);
+  border: 1px solid var(--stroke);
   border-radius: 22px;
   padding: 22px;
-  box-shadow: 0 14px 34px rgba(10, 10, 10, 0.08);
-  animation: fade-up 760ms 120ms ease-out both;
+  backdrop-filter: blur(8px);
+  box-shadow:
+    0 16px 34px rgba(255, 0, 59, 0.07),
+    0 8px 20px rgba(227, 165, 53, 0.12);
+  animation: fade-up 780ms 110ms ease-out both;
+}
+
+.catalog-header h2,
+.selected-header h3,
+.chat-title {
+  font-family: "Bodoni Moda", "Didot", "Times New Roman", serif;
+  font-weight: 700;
+  color: var(--ink-900);
+}
+
+.catalog-header p,
+.selected-header p {
+  color: var(--ink-700);
+  margin-top: 6px;
+  font-size: 15px;
+}
+
+.filter-row {
+  margin: 20px 0 16px;
+  display: flex;
+  align-items: end;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.filter-group {
+  display: grid;
+  gap: 6px;
+}
+
+.search-group {
+  flex: 1;
+  min-width: 240px;
+}
+
+.filter-row label {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink-900);
+}
+
+.filter-row select {
+  min-width: 220px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 0, 59, 0.35);
+  background: var(--surface-strong);
+  font-size: 16px;
+  color: var(--ink-900);
+}
+
+.filter-row input[type="search"] {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 0, 59, 0.35);
+  background: var(--surface-strong);
+  font-size: 16px;
+  color: var(--ink-900);
+}
+
+.filter-row select:focus {
+  outline: 2px solid rgba(255, 0, 59, 0.35);
+  outline-offset: 2px;
+}
+
+.filter-row input[type="search"]:focus {
+  outline: 2px solid rgba(255, 0, 59, 0.35);
+  outline-offset: 2px;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 14px;
+}
+
+.product-card {
+  background: linear-gradient(180deg, #fffefb 0%, #fff4e6 100%);
+  border: 1px solid rgba(227, 165, 53, 0.4);
+  border-radius: 14px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 320px;
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+  cursor: pointer;
+}
+
+.product-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 20px rgba(255, 0, 59, 0.1);
+}
+
+.product-card.is-selected {
+  border-color: rgba(255, 0, 59, 0.9);
+  box-shadow:
+    inset 0 0 0 2px rgba(255, 0, 59, 0.22),
+    0 12px 20px rgba(255, 0, 59, 0.18);
+  background: linear-gradient(180deg, #fff9fb 0%, #fff1e3 100%);
+}
+
+.product-image {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: contain;
+  border-radius: 10px;
+  background: #ffffff;
+  border: 1px solid rgba(227, 165, 53, 0.25);
+  padding: 8px;
+}
+
+.product-brand {
+  font-size: 12px;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--brand-red);
+  font-weight: 700;
+}
+
+.product-name {
+  font-size: 18px;
+  line-height: 1.3;
+  color: var(--ink-900);
+}
+
+.product-meta {
+  font-size: 13px;
+  color: var(--ink-700);
+}
+
+.product-description-preview {
+  font-size: 14px;
+  line-height: 1.45;
+  color: #4a4a4a;
+}
+
+.details-toggle-btn {
+  align-self: flex-start;
+  border: 1px solid rgba(255, 0, 59, 0.45);
+  background: #fff;
+  color: var(--brand-red);
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.details-toggle-btn:hover {
+  background: rgba(255, 0, 59, 0.06);
+}
+
+.details-toggle-btn:focus {
+  outline: 2px solid rgba(255, 0, 59, 0.3);
+  outline-offset: 2px;
+}
+
+.product-details-panel {
+  border: 1px solid rgba(227, 165, 53, 0.35);
+  border-radius: 10px;
+  background: #fffdf8;
+  padding: 10px;
+}
+
+.product-description {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #383838;
+}
+
+.card-button {
+  border: 1px solid transparent;
+  background: linear-gradient(135deg, var(--brand-red), #ff4d57);
+  color: #fff;
+  border-radius: 999px;
+  padding: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 14px rgba(255, 0, 59, 0.24);
+}
+
+.card-button.selected {
+  background: #ffffff;
+  border-color: rgba(255, 0, 59, 0.5);
+  color: var(--brand-red);
+}
+
+.workspace-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 18px;
+  align-items: start;
+}
+
+.selected-products,
+.chatbox {
+  margin: 0;
+}
+
+.selected-list {
+  list-style: none;
+  margin: 16px 0;
+  display: grid;
+  gap: 10px;
+  max-height: 330px;
+  overflow-y: auto;
+}
+
+.selected-item {
+  border: 1px solid rgba(227, 165, 53, 0.32);
+  border-radius: 12px;
+  background: #fffefa;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.selected-item p {
+  margin: 0;
+}
+
+.selected-item .selected-brand {
+  font-size: 12px;
+  color: var(--brand-red);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+}
+
+.selected-item .selected-name {
+  font-size: 14px;
+  color: var(--ink-900);
+}
+
+.remove-btn,
+.generate-btn {
+  border-radius: 999px;
+  border: 1px solid transparent;
+  background: linear-gradient(135deg, var(--brand-gold), #f0bf64);
+  color: #232323;
+  font-size: 14px;
+  padding: 10px 12px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.remove-btn {
+  padding: 6px 10px;
+  font-size: 12px;
+}
+
+.generate-btn {
+  width: 100%;
+}
+
+.clear-btn {
+  width: 100%;
+  margin-top: 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 0, 59, 0.4);
+  background: #fff;
+  color: var(--brand-red);
+  font-size: 14px;
+  padding: 10px 12px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.clear-btn:hover {
+  background: rgba(255, 0, 59, 0.06);
+}
+
+.clear-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.generate-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.chat-title {
+  margin-bottom: 14px;
 }
 
 .chat-window {
   height: 360px;
-  border: 1px solid #ded6c8;
+  border: 1px solid rgba(227, 165, 53, 0.42);
   border-radius: 14px;
   padding: 20px;
   font-size: 17px;
   line-height: 1.5;
   overflow-y: auto;
-  background: linear-gradient(180deg, #fffcf8 0%, #f8f3eb 100%);
+  background: linear-gradient(180deg, #fffef8 0%, #fff4e6 100%);
   display: flex;
   flex-direction: column;
   gap: 14px;
 }
 
-/* conversation bubbles */
 .message-row {
   display: flex;
   width: 100%;
@@ -107,25 +430,24 @@ body {
 .message-bubble {
   max-width: 78%;
   padding: 12px 15px;
-  border-radius: 8px;
+  border-radius: 12px;
   line-height: 1.5;
   overflow-wrap: break-word;
 }
 
 .message-row.user .message-bubble {
-  color: var(--loreal-white);
-  background: var(--loreal-black);
-  border-bottom-right-radius: 2px;
+  color: #fff;
+  background: linear-gradient(135deg, var(--brand-red), #ff4054);
+  border-bottom-right-radius: 4px;
 }
 
 .message-row.assistant .message-bubble {
-  color: #454545;
-  background: var(--loreal-white);
-  border: 1px solid #ded6c8;
-  border-bottom-left-radius: 2px;
+  color: #3a3a3a;
+  background: #ffffff;
+  border: 1px solid rgba(227, 165, 53, 0.32);
+  border-bottom-left-radius: 4px;
 }
 
-/* input row */
 .chat-form {
   display: flex;
   gap: 12px;
@@ -135,31 +457,30 @@ body {
 .chat-form input {
   flex: 1;
   padding: 12px 14px;
-  border: 1px solid #c8bfae;
-  border-radius: 10px;
-  background: var(--loreal-white);
+  border: 1px solid rgba(227, 165, 53, 0.5);
+  border-radius: 999px;
+  background: #fff;
   font-size: 17px;
 }
 
 .chat-form input:focus {
-  outline: 2px solid var(--loreal-gold);
+  outline: 2px solid rgba(255, 0, 59, 0.3);
   outline-offset: 2px;
 }
 
 .chat-form button {
   font-size: 18px;
-  background: linear-gradient(135deg, var(--loreal-black), #222222);
-  color: var(--loreal-white);
+  background: linear-gradient(135deg, var(--brand-red), #ff4d57);
+  color: #fff;
   border: none;
-  padding: 12px;
   width: 48px;
   height: 48px;
-  border-radius: 10px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s, background 0.3s;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .chat-form button .material-icons {
@@ -167,17 +488,15 @@ body {
 }
 
 .chat-form button:hover {
-  background: linear-gradient(135deg, #222222, #303030);
   transform: translateY(-1px);
-  box-shadow: 0 7px 16px rgba(16, 16, 16, 0.25);
+  box-shadow: 0 8px 14px rgba(255, 0, 59, 0.28);
 }
 
 .chat-form button:focus {
-  outline: 2px solid var(--loreal-gold-soft);
+  outline: 2px solid rgba(227, 165, 53, 0.5);
   outline-offset: 2px;
 }
 
-/* visually hidden */
 .visually-hidden {
   position: absolute;
   width: 1px;
@@ -190,12 +509,11 @@ body {
   border: 0;
 }
 
-/* footer */
 .site-footer {
-  margin: 48px 0 36px;
+  margin: 52px 0 36px;
   text-align: center;
   font-size: 14px;
-  color: #5f5f5f;
+  color: #6a5e4f;
   animation: fade-up 900ms 190ms ease-out both;
 }
 
@@ -205,21 +523,21 @@ body {
 
 .site-footer a {
   margin: 0 8px;
-  color: var(--loreal-black);
+  color: var(--ink-900);
   text-decoration: none;
   border-bottom: 1px solid transparent;
-  transition: color 0.2s, border-color 0.2s;
+  transition: color 0.2s ease, border-color 0.2s ease;
 }
 
 .site-footer a:hover {
-  color: #3c3c3c;
-  border-color: var(--loreal-gold);
+  color: var(--brand-red);
+  border-color: var(--brand-gold);
 }
 
 @keyframes fade-up {
   from {
     opacity: 0;
-    transform: translateY(12px);
+    transform: translateY(14px);
   }
   to {
     opacity: 1;
@@ -232,9 +550,35 @@ body {
     padding-top: 30px;
   }
 
+  .filter-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .filter-group,
+  .search-group {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .filter-row select {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .workspace-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .catalog-shell,
+  .selected-products,
   .chatbox {
     padding: 16px;
     border-radius: 16px;
+  }
+
+  .product-grid {
+    grid-template-columns: 1fr;
   }
 
   .chat-window {

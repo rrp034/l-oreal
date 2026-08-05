@@ -30,26 +30,79 @@
 
       <!------- Chat Area ------->
       <main>
-        <section class="chatbox">
-          <div id="chatWindow" class="chat-window">
-            <!-- messages will be appended here via JS -->
+        <section class="catalog-shell">
+          <div class="catalog-header">
+            <h2>Explore Products</h2>
+            <p>Pick a category, choose products, and generate a starter routine.</p>
           </div>
 
-          <form id="chatForm" class="chat-form">
-            <label for="userInput" class="visually-hidden">Message</label>
-            <input
-              id="userInput"
-              name="userInput"
-              type="text"
-              placeholder="Ask me about products or routines…"
-              autocomplete="off"
-              required
-            />
-            <button type="submit" id="sendBtn">
-              <span class="material-icons">send</span>
-              <span class="visually-hidden">Send</span>
+          <div class="filter-row">
+            <div class="filter-group">
+              <label for="categorySelect">Category</label>
+              <select id="categorySelect" name="categorySelect">
+                <option value="all">All Categories</option>
+              </select>
+            </div>
+
+            <div class="filter-group search-group">
+              <label for="productSearch">Search Products</label>
+              <input
+                id="productSearch"
+                name="productSearch"
+                type="search"
+                placeholder="Search by name, brand, or keyword"
+                autocomplete="off"
+              />
+            </div>
+          </div>
+
+          <div id="productGrid" class="product-grid" aria-live="polite">
+            <!-- product cards will be rendered here via JS -->
+          </div>
+        </section>
+
+        <section class="workspace-grid">
+          <section class="selected-products" aria-labelledby="selectedProductsTitle">
+            <div class="selected-header">
+              <h3 id="selectedProductsTitle">Selected Products</h3>
+              <p><span id="selectedCount">0</span> selected</p>
+            </div>
+
+            <ul id="selectedProductsList" class="selected-list">
+              <!-- selected products will be rendered here via JS -->
+            </ul>
+
+            <button id="generateRoutineBtn" type="button" class="generate-btn">
+              Generate Routine
             </button>
-          </form>
+            <button id="clearSelectedBtn" type="button" class="clear-btn">
+              Clear All
+            </button>
+          </section>
+
+          <section class="chatbox" aria-labelledby="chatTitle">
+            <h3 id="chatTitle" class="chat-title">Chat Assistant</h3>
+
+            <div id="chatWindow" class="chat-window">
+              <!-- messages will be appended here via JS -->
+            </div>
+
+            <form id="chatForm" class="chat-form">
+              <label for="userInput" class="visually-hidden">Message</label>
+              <input
+                id="userInput"
+                name="userInput"
+                type="text"
+                placeholder="Ask me about products or routines…"
+                autocomplete="off"
+                required
+              />
+              <button type="submit" id="sendBtn">
+                <span class="material-icons">send</span>
+                <span class="visually-hidden">Send</span>
+              </button>
+            </form>
+          </section>
         </section>
       </main>
 
